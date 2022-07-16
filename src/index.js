@@ -1,14 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './styles.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Navbar from './Components/Navbar/Navbar';
+import CreateUser from './Components/Navbar/UserFunc/CreateUser';
+import ReadUser from './Components/Navbar/UserFunc/ReadUser';
+import UpdateUser from './Components/Navbar/UserFunc/UpdateUser';
+import DeleteUser from './Components/Navbar/UserFunc/DeleteUser';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <div className='contentContainer'>
+    <Navbar />
+    <div className='mainContent'>
     <App />
-  </React.StrictMode>
+    <CreateUser />
+    <ReadUser />
+    <UpdateUser />
+    <DeleteUser />
+    </div>
+  </div>
 );
 
 // If you want to start measuring performance in your app, pass a function
