@@ -1,12 +1,15 @@
 import React from 'react';
 import './navbar.css';
 import { useState } from "react"
+import menuImage from '../../assets/images/menu.png';
+import logo from '../../assets/images/empanada.png';
 
 export default function Navbar() {
     const [isNavExpanded, setIsNavExpanded] = useState(false)
 
   return (
     <nav className="navigation">
+      <img src={logo} alt=""/>
       <a href="/" className="brand-name">
         EmpanadaReview
       </a>
@@ -16,7 +19,7 @@ export default function Navbar() {
           setIsNavExpanded(!isNavExpanded)
         }}
       >
-        {/* hamburger svg code... */}
+        <img src={menuImage} alt=''/>
       </button>
       <div
         className={
