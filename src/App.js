@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import { useEffect, useState } from "react";
 
 function App() {
