@@ -5,9 +5,9 @@ export default function SearchUser() {
   return (
     <div className="crud">
       <p>Name</p>
-      <input type="text" id="nameIn" />
+      <input type="text" id="nameIn" className="inputCrud"/>
       <p>Age</p>
-      <input type="text" id="ageIn" />
+      <input type="text" id="ageIn" className="inputCrud"/>
       <button onClick={createUser}>Create User</button>
       <p id="messageCreate"></p>
     </div>

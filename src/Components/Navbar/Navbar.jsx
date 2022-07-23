@@ -4,7 +4,7 @@ import { useState } from "react"
 import menuImage from '../../assets/images/menu.png';
 import logo from '../../assets/images/empanada.png';
 
-export default function Navbar() {
+function Navbar() {
     const [isNavExpanded, setIsNavExpanded] = useState(false)
 
   return (
@@ -41,3 +41,5 @@ export default function Navbar() {
     </nav>
   );
 }
+
+export default Navbar;

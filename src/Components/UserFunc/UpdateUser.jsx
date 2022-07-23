@@ -4,11 +4,11 @@ export default function UpdateUser() {
   return (
     <div className="crud">
       <p>ID</p>
-      <input type="text" id="idInUpdate" />
+      <input type="text" id="idInUpdate" className="inputCrud"/>
       <p>Name</p>
-      <input type="text" id="nameInUpdate" />
+      <input type="text" id="nameInUpdate" className="inputCrud"/>
       <p>Age</p>
-      <input type="text" id="ageInUpdate" />
+      <input type="text" id="ageInUpdate" className="inputCrud"/>
       <button onClick={updateUser}>Update User</button>
       <p id="messageUpdate"></p>
     </div>

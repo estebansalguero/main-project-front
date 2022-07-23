@@ -11,6 +11,7 @@ export default defineConfig({
     },
     proxy: {
       "/ping": "http://localhost:4000",
+      "/crud": "http://localhost:4000",
     },
   },
 });

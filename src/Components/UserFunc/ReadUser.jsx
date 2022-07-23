@@ -4,7 +4,7 @@ export default function ReadUser() {
   return (
     <div className="crud">
       <p>Name</p>
-      <input type="text" id="nameInSearch" />
+      <input type="text" id="nameInSearch" className="inputCrud"/>
       <button onClick={readUser}>Search User</button>
       <table className="searchTable">
         <thead id="userHead"></thead>
