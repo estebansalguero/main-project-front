@@ -2,31 +2,20 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
-import Navbar from "./components/Navbar/Navbar";
-import CreateUser from "./components/UserFunc/CreateUser";
-import ReadUser from "./Components/UserFunc/ReadUser";
-import UpdateUser from "./components/UserFunc/UpdateUser";
-import DeleteUser from "./components/UserFunc/DeleteUser";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./Components/Navbar/Navbar";
+import UserCrud from "./Views/UserCrud/UserCrud";
+import Home from "./Views/Home/Home";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Navbar />
-    <div className="content">
-      <div className="mainContent">
-        <div>
-          <App />
-        </div>
-        <div className="crud-stuff">
-          <div className="crud-stuff-row">
-            <CreateUser />
-            <ReadUser />
-          </div>
-          <div className="crud-stuff-row">
-            <UpdateUser />
-            <DeleteUser />
-          </div>
-        </div>
-      </div>
-    </div>
+    <BrowserRouter>
+      
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/Users" element={<UserCrud />} />
+        </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
