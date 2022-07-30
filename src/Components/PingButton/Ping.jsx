@@ -1,6 +1,8 @@
+import "./ping.css";
+
 function Ping() {
   return (
-    <div className="Ping">
+    <div className="ping">
       <button className="pingButton h-8 w-auto sm:h-10" onClick={ping}>Click me to ping the API</button>
     </div>
   );

@@ -23,10 +23,6 @@ export default function Home() {
             pero ahí vamos :D
           </p>
         </span>
-
-        <button>
-          <a href="/Users">Click me :D</a>
-        </button>
       </div>
     </div>
   );

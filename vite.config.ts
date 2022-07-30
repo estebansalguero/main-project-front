@@ -13,6 +13,8 @@ export default defineConfig({
       "/ping": "http://localhost:4000",
       "/crud": "http://localhost:4000",
       "/userCrud": "http://localhost:4000",
+      "/crudReviews": "http://localhost:4000",
+      "/loneReview": "http://localhost:4000",
     },
   },
 });

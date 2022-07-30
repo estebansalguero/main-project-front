@@ -8,17 +8,13 @@ import ReadUser from "../../Components/UserCrud/ReadUser";
 export default function TestView() {
   return (
     <div className="crudContent">
-      <div className="crudMoving">
-        <div className="crudContentBody">
-          <div className="containerRow">
-            <CreateUser />
-            <ReadUser />
-          </div>
-          <div className="containerRow">
-            <UpdateUser />
-            <DeleteUser />
-          </div>
-        </div>
+      <div className="containerRow">
+        <CreateUser />
+        <ReadUser />
+      </div>
+      <div className="containerRow">
+        <UpdateUser />
+        <DeleteUser />
       </div>
     </div>
   );

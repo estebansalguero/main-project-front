@@ -7,7 +7,7 @@ export default function ReadUser() {
       <input type="text" id="nombreInSearch" className="inputCrud"/>
       <p>Apellido</p>
       <input type="text" id="apellidoInSearch" className="inputCrud"/>
-      <button onClick={readUser}>Search User</button>
+      <button className="crudButton" onClick={readUser}>Search User</button>
       <table className="searchTable">
         <thead id="userHead"></thead>
         <tbody id="userTable"></tbody>

@@ -31,10 +31,10 @@ function Navbar() {
             <a href="/">Home</a>
           </li>
           <li>
-            <a href="/about">About</a>
+            <a href="/Users">Users</a>
           </li>
           <li>
-            <a href="/contact">Contact</a>
+            <a href="/Reviews">Reviews</a>
           </li>
         </ul>
       </div>

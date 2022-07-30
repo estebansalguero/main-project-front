@@ -7,7 +7,7 @@ export default function DeleteUser() {
       <input type="text" id="nombreInDelete" className="inputCrud"/>
       <p>Apellido</p>
       <input type="text" id="apellidoInDelete" className="inputCrud"/>
-      <button onClick={deleteUser}>Delete User</button>
+      <button className="crudButton" onClick={deleteUser}>Delete User</button>
       <p id="messageDelete"></p>
     </div>
   );

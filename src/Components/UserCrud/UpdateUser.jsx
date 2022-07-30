@@ -15,7 +15,7 @@ export default function UpdateUser() {
       <input type="text" id="emailInUpdate" className="inputCrud"/>
       <p>Telefono Nueva</p>
       <input type="text" id="phoneInUpdate" className="inputCrud"/>
-      <button onClick={updateUser}>Update User</button>
+      <button className="crudButton" onClick={updateUser}>Update User</button>
       <p id="messageUpdate"></p>
     </div>
   );
