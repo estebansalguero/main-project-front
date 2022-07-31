@@ -15,6 +15,7 @@ export default defineConfig({
       "/userCrud": "http://localhost:4000",
       "/crudReviews": "http://localhost:4000",
       "/loneReview": "http://localhost:4000",
+      "/uploadImg": "http://localhost:4000",
     },
   },
 });

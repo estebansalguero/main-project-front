@@ -1,22 +1,23 @@
-import "./reviews.css";
+import React, { useState } from "react";
 
+import "./reviews.css";
 export default function CreateReview() {
   return (
     <div className="createReview">
       <div className="topCreateReview">
         <div className="restauranteDiv">
-        <p>Restaurante</p>
-        <input type="text" id="restauranteIn" className="inputReview" />
+          <p>Restaurante</p>
+          <input type="text" id="restauranteIn" className="inputReview" />
         </div>
         <div>
-        <p>Rating</p>
-        <select id="ratingIn" className="inputReview">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
+          <p>Rating</p>
+          <select id="ratingIn" className="inputReview">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
         </div>
       </div>
       <p>Usuario</p>
@@ -40,7 +41,6 @@ async function createReview() {
   let review = document.getElementById("reviewIn").value;
   let ubicacion = document.getElementById("ubicacionIn").value;
   var todayDate = new Date().toISOString().slice(0, 10);
-  console.log(todayDate);
 
   const requestOptions = {
     method: "POST",
@@ -55,13 +55,15 @@ async function createReview() {
     }),
   };
 
-  console.log(requestOptions);
-
   const response = await fetch("/crudReviews", requestOptions);
   const data = await response.json();
   document.getElementById("messageCreate").innerHTML = data.error;
 
   setTimeout(function () {
     document.getElementById("messageCreate").innerHTML = "";
+    if (data.error === "Review created!") {
+      window.location.href = "/reviews";
+    }
   }, 3000);
 }
+

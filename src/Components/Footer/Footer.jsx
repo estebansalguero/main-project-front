@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer-content">
         <p>
-          Developed by <a href="#">DreamTeam</a>
+          Developed by <a href="/About">DreamTeam</a>
         </p>
       </div>
     </footer>

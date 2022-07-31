@@ -31,7 +31,6 @@ export default function FullReview() {
 
 async function getReview() {
   var given_URL = window.location.pathname.split("/");
-  console.log(given_URL[2]);
   const requestOptions = {
     method: "GET",
     headers: { "Content-Type": "application/json" },
@@ -45,6 +44,6 @@ async function getReview() {
   document.getElementById("usuario").innerHTML = data[0][2];
   document.getElementById("rating").innerHTML = data[0][3];
   document.getElementById("ubicacion").innerHTML = data[0][6];
-  document.getElementById("created").innerHTML = data[0][5];
+  document.getElementById("created").innerHTML = data[0][5].slice(0, 10);
   document.getElementById("review").innerHTML = data[0][4];
 }

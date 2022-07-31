@@ -7,6 +7,25 @@
     min-width: 70%;
 }
 
+.reviewsContentBodyHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0px 20px;
+    border-bottom: rgb(228, 228, 228) solid 0.5px;
+    
+}
+
+.createReviewButton {
+    align-self: center;
+    background-color: rgb(148, 80, 80);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+}
+
 .reviewsContentBody {
     display: flex;
     flex-direction: column;
@@ -23,8 +42,24 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     min-width: 800px;
+    height: 100%;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.cards::-webkit-scrollbar{
+    width: 5px;
+}
+
+.cards::-webkit-scrollbar-track{
+    background: #f1f1f1;
+}
+
+.cards::-webkit-scrollbar-thumb{
+    background: rgb(148, 80, 80);
+    border-radius: 5px;
 }
 .card {
     width:  90%;

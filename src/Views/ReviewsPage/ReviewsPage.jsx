@@ -1,21 +1,26 @@
 import "./reviewsPage.css";
+import axios from 'axios';
+import React from "react";
+import { useState } from "react";
 
 export default function ReviewsPage() {
+
+
+  getAllReviews();
   return (
     <div className="reviewsContent">
       <div className="reviewsContentBody">
-      <a className="crudButton" href="/Reviews/Create">
-        Create Review
-      </a>
-        <h1 onLoad={getAllReviews()}>Reviews</h1>
+        <div className="reviewsContentBodyHeader">
+          <h1>Reviews</h1>
+          <a className="createReviewButton" href="/Reviews/Create">
+            Create Review
+          </a>
+        </div>
+
         <div id="cards" className="cards"></div>
       </div>
     </div>
   );
-}
-
-function navigateToReviews(id) {
-  window.location.href = `/Review/${id}`;
 }
 
 function htmlToElement(html) {
@@ -50,7 +55,7 @@ async function getAllReviews() {
 
            <h3 class="card--content--title">${review[1]}</h3>
               <p class="card--content--author">${review[2]}</p>
-              <p class="card--content--date">${review[5]}</p>
+              <p class="card--content--date">${review[5].slice(0, 10)}</p>
 
         </div>
         <div class="card--actions">
@@ -61,5 +66,4 @@ async function getAllReviews() {
     }
   }
 }
-
 

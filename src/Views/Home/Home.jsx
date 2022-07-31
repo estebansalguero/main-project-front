@@ -7,8 +7,6 @@ export default function Home() {
   return (
     <div className="homeContent">
       <div className="homeContentBody">
-        <img src={Image} width="150"></img>
-        <Ping />
         <h1>Empanada Review</h1>
         <span>
           <p>
@@ -23,6 +21,8 @@ export default function Home() {
             pero ahí vamos :D
           </p>
         </span>
+        <img src={Image} width="150"></img>
+        <Ping />
       </div>
     </div>
   );
