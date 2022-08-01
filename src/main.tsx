@@ -13,6 +13,7 @@ import FullReview from "./Components/Reviews/FullReview";
 import About from "./Views/About/About";
 import Profile from "./Views/Profile/Profile";
 import Login from "./Views/Login/Login";
+import Signin from "./Views/Signin/Signin";
 
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -29,6 +30,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <Route path="/About" element={<About />} />
             <Route path="/Profile" element={<Profile />} />
             <Route path="/Login" element={<Login />} />
+            <Route path="/Signin" element={<Signin />} />
           </Routes>
         </BrowserRouter>
       </div>

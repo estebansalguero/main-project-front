@@ -13,10 +13,11 @@ export default Ping;
 async function ping() {
   let start = new Date().getTime();
   const response = await fetch("/ping");
-  const data = await response.json();
+  const data = await response.text();
+  console.log(data);
 
   let diff = new Date().getTime() - start;
-  setPingIndicator(data.status, diff);
+  setPingIndicator(data, diff);
 }
 
 function setPingIndicator(status, time) {

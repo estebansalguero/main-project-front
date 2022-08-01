@@ -1,20 +1,24 @@
 import "./reviewsPage.css";
-import axios from 'axios';
+import axios from "axios";
 import React from "react";
 import { useState } from "react";
 
 export default function ReviewsPage() {
-
-
   getAllReviews();
   return (
     <div className="reviewsContent">
       <div className="reviewsContentBody">
         <div className="reviewsContentBodyHeader">
           <h1>Reviews</h1>
-          <a className="createReviewButton" href="/Reviews/Create">
-            Create Review
-          </a>
+          {sessionStorage.getItem("userName") != null ? (
+            <a className="createReviewButton" href="/Reviews/Create">
+              Create Review
+            </a>
+          ) : (
+            <a className="createReviewButton" href="/Login">
+              Login to create a review
+            </a>
+          )}
         </div>
 
         <div id="cards" className="cards"></div>
@@ -32,21 +36,18 @@ function htmlToElement(html) {
 
 async function getAllReviews() {
   var response = await fetch("/crudReviews");
-  var data = await response.json();
-  var revs = Object.assign({}, data);
-  var allRevs = {};
-
-  for (var i = 0; i < Object.keys(revs).length; i++) {
-    allRevs[i] = revs[i];
-  }
+  var data = await response.text();
+  var reviews = JSON.parse(data);
 
   if (!document.getElementById("cards").hasChildNodes()) {
-    for (var i = 0; i < Object.keys(allRevs).length; i++) {
-      var review = allRevs[i];
+    for (var i = 0; i < Object.keys(reviews).length; i++) {
+      var review = reviews[i];
       var reviewDiv = htmlToElement(`
       <div class="card">
         <div class="card--image">
-          <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="" width=200px>
+          <img src="http://localhost:4000/public/${
+            review[7]
+          }" alt="" width=200px>
         </div>
         <div class="card--content">
            <div class="card--location">
@@ -66,4 +67,3 @@ async function getAllReviews() {
     }
   }
 }
-
