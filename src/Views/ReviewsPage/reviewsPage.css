@@ -20,7 +20,8 @@
 
 .createReviewButton {
     align-self: center;
-    background-color: rgb(148, 80, 80);
+    color: white;
+    background-color: rgb(79, 70, 229);
     border-radius: 10px;
     padding: 10px;
     margin: 10px;
@@ -32,6 +33,7 @@
     align-items: center;
     justify-content: flex-start;
     height: 100%;
+    max-height: 100vh;
 }
 
 h1 {
@@ -58,7 +60,7 @@ h1 {
 }
 
 .cards::-webkit-scrollbar-thumb{
-    background: rgb(148, 80, 80);
+    background: rgb(79, 70, 229);
     border-radius: 5px;
 }
 .card {
@@ -122,5 +124,6 @@ h1 {
     padding: 10px;
     width: 100px;
     border-radius: 15px;
-    background-color:  rgb(148, 80, 80);
+    background-color:  rgb(79, 70, 229);
+    color: white;
 }
