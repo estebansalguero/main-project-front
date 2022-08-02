@@ -30,20 +30,29 @@ const Navbar = () => {
               ))}
             </div>
           </div>
-          <div className="ml-10 space-x-4">
+          {sessionStorage.getItem("userName") === null ? (
+            <div className="ml-10 space-x-4">
+              <a
+                href="/Login"
+                className="inline-block bg-indigo-500 py-2 px-4 border border-transparent rounded-md text-base font-medium text-white hover:bg-opacity-75"
+              >
+                Log in
+              </a>
+              <a
+                href="/Signin"
+                className="inline-block bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50"
+              >
+                Sign up
+              </a>
+            </div>
+          ) : (
             <a
-              href="/Login"
-              className="inline-block bg-indigo-500 py-2 px-4 border border-transparent rounded-md text-base font-medium text-white hover:bg-opacity-75"
-            >
-              Log in
-            </a>
-            <a
-              href="/Signin"
+              href="/Profile"
               className="inline-block bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-indigo-600 hover:bg-indigo-50"
             >
-              Sign up
+              {sessionStorage.getItem("userName")}
             </a>
-          </div>
+          )}
         </div>
         <div className="py-4 flex flex-wrap justify-center space-x-6 lg:hidden">
           {navigation.map((link) => (

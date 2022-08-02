@@ -38,6 +38,7 @@ async function getAllReviews() {
   var response = await fetch("/crudReviews");
   var data = await response.text();
   var reviews = JSON.parse(data);
+  console.log(reviews);
 
   if (!document.getElementById("cards").hasChildNodes()) {
     for (var i = 0; i < Object.keys(reviews).length; i++) {

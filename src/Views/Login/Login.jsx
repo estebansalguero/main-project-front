@@ -28,6 +28,7 @@ async function getUserlogin() {
   const password = document.getElementById("password").value;
   const response = await fetch("/userCrud?userName="+userName+"&password="+password);
   const data = await response.text();
+  console.log(data);
 
   return JSON.parse(data);
 }

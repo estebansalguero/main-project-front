@@ -112,11 +112,16 @@ const Signin = () => {
       </div>
       <div className="flex justify-center items-center">
         <button
+          onClick={handleSignin}
           type="button"
           className="mt-10 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           Sign Up
         </button>
+      </div>
+
+      <div className="flex justify-center items-center">
+        <p id="messageCreate"></p>
       </div>
     </div>
   );
@@ -124,6 +129,7 @@ const Signin = () => {
 
 async function handleSignin() {
   var data = await setUserlogin();
+  console.log(data);
 }
 
 async function setUserlogin() {
@@ -153,8 +159,9 @@ async function setUserlogin() {
 
   setTimeout(function () {
     document.getElementById("messageCreate").innerHTML = "";
-
-    window.location.href = "/login";
+    if (data === "User added!") {
+      window.location.href = "/login";
+    }
   }, 3000);
 }
 

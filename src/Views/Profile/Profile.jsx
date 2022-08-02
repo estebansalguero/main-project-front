@@ -4,8 +4,7 @@ import UserProfile from "../../Components/UserData/UserProfile";
 
 export default function Profile() {
   useEffect (() => {
-    fillInfo();
-    
+    fillInfo(); 
   }
   , []);
 
