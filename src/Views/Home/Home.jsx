@@ -1,28 +1,28 @@
 import React from "react";
 import Ping from "../../Components/PingButton/Ping";
-import "./Home.css";
 import Image from "./../../Assets/images/empanada.png";
 
 export default function Home() {
   return (
-    <div className="homeContent">
-      <div className="homeContentBody">
-        <h1>Empanada Review</h1>
-        <span>
-          <p>
+    <div className="bg-white">
+      <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <h2 className="text-base font-semibold text-indigo-600 tracking-wide uppercase">
+            Dream Team
+          </h2>
+          <p className="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
+            Empanadas Review.
+          </p>
+          <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500">
             Empanada Review is a web application that allows you to review your
             favorite empanadas. You can add your own empanadas to the database,
             and then view them all.
           </p>
-          <p> Copilot wrote that lmao </p>
-          <p>
-            Bueno, EmpanadaReview sigue en desarrollo, estamos teniemdo más
-            problemas con lo que es la base de datos ya que oracle es un dolor,
-            pero ahí vamos :D
-          </p>
-        </span>
-        <img src={Image} width="150"></img>
-        <Ping />
+        </div>
+        <div className="flex justify-center flex-col items-center py-5">
+          <img src={Image} width="150" />
+          <Ping />
+        </div>
       </div>
     </div>
   );

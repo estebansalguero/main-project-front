@@ -1,12 +1,16 @@
-import "./ping.css";
-
-function Ping() {
+const Ping = () => {
   return (
-    <div className="ping">
-      <button className="pingButton h-8 w-auto sm:h-10" onClick={ping}>Click me to ping the API</button>
-    </div>
+    <>
+      <button
+        type="button"
+        className="pingButton inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        onClick={ping}
+      >
+        Click me to ping the API
+      </button>
+    </>
   );
-}
+};
 
 export default Ping;
 
@@ -21,11 +25,11 @@ async function ping() {
 }
 
 function setPingIndicator(status, time) {
-  document.getElementsByClassName("pingButton")[0].innerHTML = (status + " " + time + "ms");
+  document.getElementsByClassName("pingButton")[0].innerHTML =
+    status + " " + time + "ms";
 
   setTimeout(function () {
-    document.getElementsByClassName("pingButton")[0].innerHTML = "Click me to ping the API";
+    document.getElementsByClassName("pingButton")[0].innerHTML =
+      "Click me to ping the API";
   }, 5000);
-
-
 }
