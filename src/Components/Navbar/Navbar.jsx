@@ -16,7 +16,7 @@ const Navbar = () => {
               <img className="h-10 w-auto" src={logo} alt="Empanadas Review" />
             </a>
             <a href="/" className="font-semibold text-white ml-3">
-              Empanadas Review
+              <span className="hidden md:inline-block">Empanadas Review</span>
             </a>
             <div className="hidden ml-10 space-x-8 lg:block">
               {navigation.map((link) => (
