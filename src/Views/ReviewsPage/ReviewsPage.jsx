@@ -3,7 +3,7 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 
-export default function ReviewsPage() {
+export const ReviewsPage = () => {
   getAllReviews();
   return (
     <div className="reviewsContent">
@@ -25,7 +25,7 @@ export default function ReviewsPage() {
       </div>
     </div>
   );
-}
+};
 
 function htmlToElement(html) {
   var template = document.createElement("template");

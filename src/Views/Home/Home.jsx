@@ -1,8 +1,7 @@
-import React from "react";
-import Ping from "../../Components/PingButton/Ping";
+import Ping from "../../hooks/Ping";
 import Image from "./../../Assets/images/empanada.png";
 
-export default function Home() {
+export const Home = () => {
   return (
     <div className="bg-white">
       <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
@@ -26,4 +25,4 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};

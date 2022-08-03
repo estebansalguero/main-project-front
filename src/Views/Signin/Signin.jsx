@@ -1,4 +1,4 @@
-const Signin = () => {
+export const Signin = () => {
   return (
     <div className="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
       <div className="md:grid md:grid-cols-3 md:gap-6">
@@ -164,5 +164,3 @@ async function setUserlogin() {
     }
   }, 3000);
 }
-
-export default Signin;

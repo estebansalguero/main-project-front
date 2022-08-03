@@ -17,7 +17,7 @@ const navigation = [
   {
     name: "Empanada Review",
     href: "/About",
-    icon: (props) => <img src={logo} width="24" className="empanadaLogo" />,
+    icon: (props) => <img src={logo} width="24" className="opacity-50 hover:opacity-70" />,
   },
 ];
 

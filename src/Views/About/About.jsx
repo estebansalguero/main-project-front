@@ -1,4 +1,3 @@
-import Navbar from "../../Components/Navbar/Navbar";
 import logo from "../../assets/images/empanada.png";
 
 const stats = [
@@ -8,7 +7,7 @@ const stats = [
   { label: "Raised", value: "$25M" },
 ];
 
-export default function About() {
+export const About = () => {
   return (
     <>
       <div className="relative bg-white py-5 sm:py-6">
@@ -140,4 +139,4 @@ export default function About() {
       </div>
     </>
   );
-}
+};

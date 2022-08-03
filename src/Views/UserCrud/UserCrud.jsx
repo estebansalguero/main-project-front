@@ -1,11 +1,9 @@
-import React from "react";
-import App from "../../Components/PingButton/Ping";
 import CreateUser from "../../Components/UserCrud/CreateUser";
 import DeleteUser from "../../Components/UserCrud/DeleteUser";
 import UpdateUser from "../../Components/UserCrud/UpdateUser";
 import ReadUser from "../../Components/UserCrud/ReadUser";
 
-export default function TestView() {
+export const UserCrud = () => {
   return (
     <div className="crudContent">
       <div className="containerRow">
@@ -18,4 +16,4 @@ export default function TestView() {
       </div>
     </div>
   );
-}
+};

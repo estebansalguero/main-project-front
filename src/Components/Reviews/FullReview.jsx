@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./reviews.css";
 
-export default function FullReview() {
+export const FullReview = () => {
   getReview();
   return (
     <div className="fullReview">
@@ -35,7 +35,7 @@ export default function FullReview() {
       </div>
     </div>
   );
-}
+};
 
 async function deleteReview() {
   var id = parseInt(document.getElementById("idRev").innerHTML);

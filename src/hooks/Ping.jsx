@@ -24,12 +24,12 @@ async function ping() {
   setPingIndicator(data, diff);
 }
 
-function setPingIndicator(status, time) {
+const setPingIndicator = (status, time) => {
   document.getElementsByClassName("pingButton")[0].innerHTML =
     status + " " + time + "ms";
 
-  setTimeout(function () {
+  setTimeout(() => {
     document.getElementsByClassName("pingButton")[0].innerHTML =
       "Click me to ping the API";
   }, 5000);
-}
+};

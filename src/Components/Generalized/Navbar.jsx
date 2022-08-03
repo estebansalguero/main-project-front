@@ -6,7 +6,7 @@ const navigation = [
   { name: "Reviews", href: "/Reviews" },
 ];
 
-const Navbar = () => {
+export const Navbar = () => {
   return (
     <header className="bg-indigo-600">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
@@ -69,5 +69,3 @@ const Navbar = () => {
     </header>
   );
 };
-
-export default Navbar;
