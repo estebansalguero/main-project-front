@@ -1,7 +1,15 @@
 import { useEffect } from "react";
+<<<<<<< Updated upstream
 
 export const Profile = () => {
   useEffect(() => {
+=======
+import UserProfile from "../../Components/UserData/UserProfile";
+import "./profile.css"
+
+export default function Profile() {
+  useEffect (() => {
+>>>>>>> Stashed changes
     fillInfo();
   }, []);
 
