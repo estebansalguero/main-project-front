@@ -6,12 +6,17 @@ import { useState } from "react";
 export const ReviewsPage = () => {
   getAllReviews();
   return (
-    <div className="reviewsContent">
-      <div className="reviewsContentBody">
-        <div className="reviewsContentBodyHeader">
-          <h1>Reviews</h1>
+    <div className="flex flex-col items-center justify-center h-screen min-w-0">
+      <div className="flex flex-col items-center justify-center h-screen">
+        <div className="flex flex-row justify-between items-center w-full pt-0 pr-5 border-solid border-2 border-white ">
+          <p className="mt-1 text-4xl font-extrabold text-gray-900 sm:text-3xl sm:tracking-tight lg:text-6xl">
+            Reviews
+          </p>
           {sessionStorage.getItem("userName") != null ? (
-            <a className="createReviewButton" href="/Reviews/Create">
+            <a
+              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              href="/Reviews/Create"
+            >
               Create Review
             </a>
           ) : (
@@ -20,7 +25,6 @@ export const ReviewsPage = () => {
             </a>
           )}
         </div>
-
         <div id="cards" className="cards"></div>
       </div>
     </div>
