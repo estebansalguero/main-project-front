@@ -18,7 +18,6 @@ async function ping() {
   let start = new Date().getTime();
   const response = await fetch("/ping");
   const data = await response.text();
-  console.log(data);
 
   let diff = new Date().getTime() - start;
   setPingIndicator(data, diff);

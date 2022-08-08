@@ -42,7 +42,6 @@ async function getAllReviews() {
   var response = await fetch("/crudReviews");
   var data = await response.text();
   var reviews = JSON.parse(data);
-  console.log(reviews);
 
   if (!document.getElementById("cards").hasChildNodes()) {
     for (var i = 0; i < Object.keys(reviews).length; i++) {
@@ -54,6 +53,8 @@ async function getAllReviews() {
             review[7]
           }" alt="" width=200px>
         </div>
+
+        <div class="anotherContainer">
         <div class="card--content">
            <div class="card--location">
             <p class="card--content--location">${review[6]}</p>
@@ -66,6 +67,7 @@ async function getAllReviews() {
         </div>
         <div class="card--actions">
             <a class="card--action" href="/Review/${review[0]}">See</a>
+        </div>
         </div>
       </div>`);
       document.getElementById("cards").appendChild(reviewDiv);

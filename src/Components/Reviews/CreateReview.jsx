@@ -18,7 +18,6 @@ export const CreateReview = () => {
     axios
       .post("/uploadImg", formData)
       .then((res) => {
-        console.log("good");
       })
       .catch((err) => {
         console.log(err);
@@ -29,7 +28,7 @@ export const CreateReview = () => {
   return (
     <>
       <div>
-        <div className="md:grid md:grid-cols-3 md:gap-6">
+        <div className="md:grid md:grid-cols-3 md:gap-6 h-screen">
           <div className="md:col-span-1">
             <div className="px-4 sm:px-0">
               <h3 className="text-lg font-medium leading-6 text-gray-900">
@@ -189,8 +188,6 @@ async function createReview() {
   let ubicacion = document.getElementById("ubicacionIn").value;
   var todayDate = new Date().toISOString().slice(0, 10);
   let fileName = document.getElementById("fileName").innerHTML;
-
-  console.log(fileName);
 
   const requestOptions = {
     method: "POST",

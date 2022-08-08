@@ -93,3 +93,13 @@
     border-radius: 10px;
     padding: 10px;
 }
+
+@media screen and (max-width: 768px) {
+    .fullReview {
+        width: 100%;
+    }
+    .createReview {
+        width: 100%;
+    }
+}
+    

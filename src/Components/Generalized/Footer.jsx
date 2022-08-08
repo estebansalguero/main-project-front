@@ -3,7 +3,8 @@ import logo from "../../assets/images/empanada_nd.png";
 const navigation = [
   {
     name: "GitHub",
-    href: "/GitHub.com",
+    href: "https://github.com/Gabrielmong",
+    target: "_blank",
     icon: (props) => (
       <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
         <path
@@ -25,13 +26,14 @@ export const Footer = () => {
   return (
     // <body className="flex flex-col min-h-screen">
     //mt-auto for footer
-      <footer className="bg-gray-100 bg-opacity-50">
+      <footer className="bg-gray-100 bg-opacity-50 relative bottom-0 w-full" >
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
           <div className="flex justify-center space-x-6 md:order-2">
             {navigation.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
+                target={item.target}
                 className="text-gray-400 hover:text-gray-500"
               >
                 <span className="sr-only">{item.name}</span>

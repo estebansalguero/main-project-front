@@ -1,15 +1,7 @@
 import { useEffect } from "react";
-<<<<<<< Updated upstream
 
 export const Profile = () => {
   useEffect(() => {
-=======
-import UserProfile from "../../Components/UserData/UserProfile";
-import "./profile.css"
-
-export default function Profile() {
-  useEffect (() => {
->>>>>>> Stashed changes
     fillInfo();
   }, []);
 
@@ -58,13 +50,20 @@ export default function Profile() {
                   </tr>
                 </tbody>
               </table>
-              <div className="text-center my-3">
+              <div className="text-center my-3 flex justify-around">
                 <button
                   type="button"
                   className="pingButton inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   onClick={handleLogout}
                 >
                   Log out
+                </button>
+                <button
+                  type="button"
+                  className="pingButton inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  onClick={handleUpdate}
+                >
+                  Update
                 </button>
               </div>
             </div>
@@ -76,7 +75,6 @@ export default function Profile() {
 };
 
 const fillInfo = () => {
-  console.log(sessionStorage);
   document.getElementById("userName").innerHTML =
     sessionStorage.getItem("userName");
   document.getElementById("name").innerHTML = sessionStorage.getItem("name");
@@ -88,4 +86,8 @@ const fillInfo = () => {
 const handleLogout = () => {
   sessionStorage.clear();
   window.location.href = "/";
+};
+
+const handleUpdate = () => {
+  window.location.href = "/update";
 };

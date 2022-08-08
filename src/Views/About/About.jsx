@@ -2,15 +2,15 @@ import logo from "../../assets/images/empanada.png";
 
 const stats = [
   { label: "Founded", value: "2021" },
-  { label: "Employees", value: "5" },
-  { label: "Beta Users", value: "521" },
-  { label: "Raised", value: "$25M" },
+  { label: "Members", value: "3" },
+  { label: "Projects Done", value: "11" },
+  { label: "Raised", value: "$0, debt likely" },
 ];
 
 export const About = () => {
   return (
     <>
-      <div className="relative bg-white py-5 sm:py-6">
+      <div className="relative bg-white py-5 sm:py-6 h-screen">
         <div className="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:gap-24 lg:items-start">
           <div className="relative sm:py-16 lg:py-0">
             <div
@@ -87,30 +87,22 @@ export const About = () => {
             {/* Content area */}
             <div className="pt-12 sm:pt-16 lg:pt-20">
               <h2 className="text-3xl text-gray-900 font-extrabold tracking-tight sm:text-4xl">
-                On a mission to empower teams
+                Dream Team
               </h2>
               <div className="mt-6 text-gray-500 space-y-6">
                 <p className="text-lg">
-                  Sagittis scelerisque nulla cursus in enim consectetur quam.
-                  Dictum urna sed consectetur neque tristique pellentesque.
-                  Blandit amet, sed aenean erat arcu morbi. Cursus faucibus nunc
-                  nisl netus morbi vel porttitor vitae ut. Amet vitae fames
-                  senectus vitae.
+                  DreamTeam was created by three students from the University of
+                  Fidélitas, trying to get through by sticking together and completing
+                  every assignment in the best way possible.
                 </p>
                 <p className="text-base leading-7">
-                  Sollicitudin tristique eros erat odio sed vitae, consequat
-                  turpis elementum. Lorem nibh vel, eget pretium arcu vitae.
-                  Eros eu viverra donec ut volutpat donec laoreet quam urna.
-                  Sollicitudin tristique eros erat odio sed vitae, consequat
-                  turpis elementum. Lorem nibh vel, eget pretium arcu vitae.
-                  Eros eu viverra donec ut volutpat donec laoreet quam urna.
+                  Every team has a different skillset, Lucía knows lots of security and databases, 
+                  Esteban has a great understanding of documentation and the user interface, Gabriel 
+                  handles the code's logic, or infrastructure, and manages the team very well. 
                 </p>
                 <p className="text-base leading-7">
-                  Rhoncus nisl, libero egestas diam fermentum dui. At quis
-                  tincidunt vel ultricies. Vulputate aliquet velit faucibus
-                  semper. Pellentesque in venenatis vestibulum consectetur nibh
-                  id. In id ut tempus egestas. Enim sit aliquam nec, a. Morbi
-                  enim fermentum lacus in. Viverra.
+                  Met in the second quarter of 2021, and since, developing and maintaining the
+                  great team we have.
                 </p>
               </div>
             </div>
