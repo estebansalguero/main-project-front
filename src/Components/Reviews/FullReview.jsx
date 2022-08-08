@@ -6,6 +6,7 @@ export const FullReview = () => {
   return (
     <div className="fullReview">
       <div className="revHeader">
+        <p id="idRev" hidden></p>
         <h1 className="restaurante" id="restaurante"></h1>
         <div className="headSection">
           <h3>Author</h3>
@@ -62,13 +63,14 @@ async function getReview() {
     requestOptions
   );
   const data = await response.json();
+  document.getElementById("idRev").innerHTML = data[0][0];
   document.getElementById("restaurante").innerHTML = data[0][1];
   document.getElementById("usuario").innerHTML = data[0][2];
   document.getElementById("rating").innerHTML = data[0][3];
   document.getElementById("ubicacion").innerHTML = data[0][6];
   document.getElementById("created").innerHTML = data[0][5].slice(0, 10);
   document.getElementById("review").innerHTML = data[0][4];
-  if (data[0][2] === sessionStorage.getItem("userName") && data[0][0] === parseInt(sessionStorage.getItem("id"))) {
+  if (data[0][2] === sessionStorage.getItem("userName") && sessionStorage.getItem("id")) {
     document.getElementById("deleteRev").hidden = false;
   } else {
     document.getElementById("deleteRev").hidden = true;
