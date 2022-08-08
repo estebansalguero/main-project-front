@@ -2,7 +2,7 @@ import logo from "../../assets/images/empanada.png";
 
 const stats = [
   { label: "Founded", value: "2021" },
-  { label: "Members", value: "3" },
+  { label: "Members", value: "4" },
   { label: "Projects Done", value: "11" },
   { label: "Raised", value: "$0, debt likely" },
 ];
@@ -91,18 +91,24 @@ export const About = () => {
               </h2>
               <div className="mt-6 text-gray-500 space-y-6">
                 <p className="text-lg">
-                  DreamTeam was created by three students from the University of
-                  Fidélitas, trying to get through by sticking together and completing
+                  DreamTeam was created by four students from the Fidélitas University
+                  , trying to get through by sticking together and completing
                   every assignment in the best way possible.
                 </p>
                 <p className="text-base leading-7">
-                  Every team has a different skillset, Lucía knows lots of security and databases, 
-                  Esteban has a great understanding of documentation and the user interface, Gabriel 
-                  handles the code's logic, or infrastructure, and manages the team very well. 
+                  Each member has a different skillset, Lucía knows lots of security and databases, 
+                  Esteban has a great understanding of documentation and user interfaces, Caleb has 
+                  extensive knowledge in security, and Gabriel handles the code's logic, or 
+                  infrastructure. Gabriel also manages the team very well. 
                 </p>
                 <p className="text-base leading-7">
                   Met in the second quarter of 2021, and since, developing and maintaining the
-                  great team we have.
+                  great team we are.
+                </p>
+
+                <p className="text-base leading-7">
+                  Thank you for considering us as the best we page for reviews! We are improving our
+                  website to provide you the best user experience and also the most efficient info.
                 </p>
               </div>
             </div>

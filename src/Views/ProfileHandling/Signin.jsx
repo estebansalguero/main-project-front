@@ -33,7 +33,7 @@ export const Signin = () => {
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700"
               >
-                Pasword
+                Password
               </label>
               <input
                 type="password"
@@ -97,7 +97,7 @@ export const Signin = () => {
                 htmlFor="telefonoIn"
                 className="block text-sm font-medium text-gray-700"
               >
-                Tel. number
+                Phone number
               </label>
               <input
                 type="text"
@@ -116,7 +116,7 @@ export const Signin = () => {
           type="button"
           className="mt-10 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
-          Sign Up
+          Sign Up!
         </button>
       </div>
 
