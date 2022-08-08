@@ -11,7 +11,7 @@ export default function CreateUser() {
       <input type="text" id="correoIn" className="inputCrud" />
       <p>Telefono</p>
       <input type="text" id="telefonoIn" className="inputCrud" />
-      <button onClick={createUser}>Create User</button>
+      <button className="crudButton" onClick={createUser}>Create User</button>
       <p id="messageCreate"></p>
     </div>
   );
