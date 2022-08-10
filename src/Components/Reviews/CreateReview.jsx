@@ -116,6 +116,7 @@ export const CreateReview = () => {
                       rows={3}
                       className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
                       defaultValue={""}
+                      maxLength={1000}
                     />
                   </div>
                   <p className="mt-2 text-sm text-gray-500">

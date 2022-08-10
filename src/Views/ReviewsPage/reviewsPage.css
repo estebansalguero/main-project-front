@@ -165,6 +165,10 @@ h1 {
 
     }
 
+    .createReviewButton {
+        text-align: center;
+    }
+
     .anotherContainer {
         display: flex;
         flex-direction: column;
