@@ -18,7 +18,7 @@ const navigation = [
   {
     name: "Empanada Review",
     href: "/About",
-    icon: (props) => <img src={logo} width="24" className="opacity-50 hover:opacity-70" />,
+    icon: (props) => <img src={logo} width="24" className="opacity-60 hover:opacity-90" />,
   },
 ];
 
@@ -26,7 +26,7 @@ export const Footer = () => {
   return (
     // <body className="flex flex-col min-h-screen">
     //mt-auto for footer
-      <footer className="bg-gray-100 bg-opacity-50 relative bottom-0 w-full" >
+      <footer className="bg-em_white_hover relative bottom-0 w-full" >
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
           <div className="flex justify-center space-x-6 md:order-2">
             {navigation.map((item) => (
@@ -34,7 +34,7 @@ export const Footer = () => {
                 key={item.name}
                 href={item.href}
                 target={item.target}
-                className="text-gray-400 hover:text-gray-500"
+                className="text-em_gray hover:text-em_gray_hover"
               >
                 <span className="sr-only">{item.name}</span>
                 <item.icon className="h-6 w-6" aria-hidden="true" />
@@ -42,7 +42,7 @@ export const Footer = () => {
             ))}
           </div>
           <div className="mt-8 md:mt-0 md:order-1">
-            <p className="text-center text-base text-gray-400">
+            <p className="text-center text-base text-em_gray">
               &copy; 2022 Dream Team Inc. All rights reserved.
             </p>
           </div>

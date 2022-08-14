@@ -4,8 +4,61 @@ export const Update = () => {
   useEffect(() => {
     fillInfo();
   }, []);
+
+  async function handleSignin() {
+    var data = await setUserlogin();
+  }
+
+  async function setUserlogin() {
+    let indUser = sessionStorage.getItem("userName");
+    let indPassword = sessionStorage.getItem("password");
+    let userName = document.getElementById("userName").value;
+    let password = document.getElementById("password").value;
+    let nombre = document.getElementById("nameIn").value;
+    let apellido = document.getElementById("apellidoIn").value;
+    let correo = document.getElementById("correoIn").value;
+    let telefono = document.getElementById("telefonoIn").value;
+
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        indUser: indUser,
+        indPassword: indPassword,
+        userName: userName,
+        password: password,
+        nombre: nombre,
+        apellido: apellido,
+        correo: correo,
+        telefono: telefono,
+      }),
+    };
+    const response = await fetch("/userCrud", requestOptions);
+    const data = await response.text();
+    if (data === "User updated!") {
+      sessionStorage.clear();
+      setTimeout(function () {
+        window.location.href = "/";
+      }, 3000);
+    }
+  }
+
+  const fillInfo = () => {
+    document.getElementById("userName").value =
+      sessionStorage.getItem("userName");
+    document.getElementById("password").value =
+      sessionStorage.getItem("password");
+    document.getElementById("nameIn").value = sessionStorage.getItem("name");
+    document.getElementById("apellidoIn").value =
+      sessionStorage.getItem("lastName");
+    document.getElementById("correoIn").value =
+      sessionStorage.getItem("correo");
+    document.getElementById("telefonoIn").value =
+      sessionStorage.getItem("telefono");
+  };
+
   return (
-    <div className="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6 h-screen">
+    <div className="bg-em_white shadow px-4 py-5 sm:rounded-lg sm:p-6 h-screen">
       <div className="md:grid md:grid-cols-3 md:gap-6">
         <div className="md:col-span-1">
           <h3 className="text-lg font-medium leading-6 text-gray-900">
@@ -122,7 +175,7 @@ export const Update = () => {
         <button
           onClick={handleSignin}
           type="button"
-          className="mt-10 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="mt-10 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-em_brown hover:bg-em_brown_hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           Save
         </button>
@@ -133,55 +186,4 @@ export const Update = () => {
       </div>
     </div>
   );
-};
-
-async function handleSignin() {
-  var data = await setUserlogin();
-}
-
-async function setUserlogin() {
-  let indUser = sessionStorage.getItem("userName");
-  let indPassword = sessionStorage.getItem("password");
-  let userName = document.getElementById("userName").value;
-  let password = document.getElementById("password").value;
-  let nombre = document.getElementById("nameIn").value;
-  let apellido = document.getElementById("apellidoIn").value;
-  let correo = document.getElementById("correoIn").value;
-  let telefono = document.getElementById("telefonoIn").value;
-
-  const requestOptions = {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      indUser: indUser,
-      indPassword: indPassword,
-      userName: userName,
-      password: password,
-      nombre: nombre,
-      apellido: apellido,
-      correo: correo,
-      telefono: telefono,
-    }),
-  };
-  const response = await fetch("/userCrud", requestOptions);
-  const data = await response.text();
-  if (data === "User updated!") {
-    sessionStorage.clear();
-    setTimeout(function () {
-      window.location.href = "/";
-    }, 3000);
-  }
-}
-
-const fillInfo = () => {
-  document.getElementById("userName").value =
-    sessionStorage.getItem("userName");
-  document.getElementById("password").value =
-    sessionStorage.getItem("password");
-  document.getElementById("nameIn").value = sessionStorage.getItem("name");
-  document.getElementById("apellidoIn").value =
-    sessionStorage.getItem("lastName");
-  document.getElementById("correoIn").value = sessionStorage.getItem("correo");
-  document.getElementById("telefonoIn").value =
-    sessionStorage.getItem("telefono");
 };

@@ -10,8 +10,8 @@ const stats = [
 export const About = () => {
   return (
     <>
-      <div className="relative bg-white py-5 sm:py-6 h-screen">
-        <div className="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:gap-24 lg:items-start">
+      <div className="relative bg-white py-5 sm:py-6 h-fc">
+        <div className="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:gap-24 lg:items-start pb-10">
           <div className="relative sm:py-16 lg:py-0">
             <div
               aria-hidden="true"
@@ -91,8 +91,8 @@ export const About = () => {
               </h2>
               <div className="mt-6 text-gray-500 space-y-6">
                 <p className="text-lg">
-                  DreamTeam was created by four students from the Fidélitas University
-                  , trying to get through by sticking together and completing
+                  DreamTeam was created by four students from the Fidélitas University,
+                   trying to get through by sticking together and completing
                   every assignment in the best way possible.
                 </p>
                 <p className="text-base leading-7">
@@ -130,7 +130,6 @@ export const About = () => {
                   </div>
                 ))}
               </dl>
-              <div className="mt-10" />
             </div>
           </div>
         </div>

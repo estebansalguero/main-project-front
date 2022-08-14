@@ -9,6 +9,7 @@ import {
 import { Footer } from "./Components/Generalized/Footer";
 import { Navbar } from "./Components/Generalized/Navbar";
 import { CreateReview } from "./Components/Reviews/CreateReview";
+import { EditReview } from "./Components/Reviews/EditReview";
 import { FullReview } from "./Components/Reviews/FullReview";
 import { About } from "./Views/About/About";
 import { Home } from "./Views/Home/Home";
@@ -19,6 +20,7 @@ import { ReviewsPage } from "./Views/ReviewsPage/ReviewsPage";
 import { Signin } from "./Views/ProfileHandling/Signin";
 import { Update } from "./Views/ProfileHandling/Update";
 
+
 export const App: FC = () => {
   return (
     <>
@@ -28,6 +30,7 @@ export const App: FC = () => {
         <Route path="/Reviews" element={<ReviewsPage />} />
         <Route path="/Reviews/Create" element={<CreateReview />} />
         <Route path="/Review/:id" element={<FullReview />} />
+        <Route path="/editReview/:id" element={<EditReview />} />
         <Route path="/About" element={<About />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Login" element={<Login />} />
