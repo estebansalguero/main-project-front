@@ -1,13 +1,9 @@
-//the idea is render the App.tsx file in main, but in this moment doesn't work
-
 import React, { FC } from "react";
 import {
   Routes,
   Route,
 } from "react-router-dom";
 
-import { Footer } from "./Components/Generalized/Footer";
-import { Navbar } from "./Components/Generalized/Navbar";
 import { CreateReview } from "./Components/Reviews/CreateReview";
 import { EditReview } from "./Components/Reviews/EditReview";
 import { FullReview } from "./Components/Reviews/FullReview";

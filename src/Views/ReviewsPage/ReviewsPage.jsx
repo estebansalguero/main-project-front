@@ -1,7 +1,4 @@
 import "./reviewsPage.css";
-import axios from "axios";
-import React from "react";
-import { useState } from "react";
 
 export const ReviewsPage = () => {
   function htmlToElement(html) {
@@ -41,7 +38,7 @@ export const ReviewsPage = () => {
                 <p class="card--content--date">${review[5].slice(0, 10)}</p>
   
           </div>
-          <div class="card--actions">
+          <div class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-em_brown hover:bg-em_brown_hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-em_brown">
               <a class="card--action" href="/Review/${review[0]}">See</a>
           </div>
           </div>
@@ -60,7 +57,7 @@ export const ReviewsPage = () => {
           </p>
           {sessionStorage.getItem("userName") != null ? (
             <a
-              className="inline-flex items-center px-6 py-3 text-base font-medium rounded-full shadow-sm text-em_white bg-em_orange hover:bg-em_orange_hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:em_orange_hover"
+              className="inline-flex items-center px-6 py-3 text-base font-medium rounded-full shadow-sm text-em_white bg-em_brown hover:bg-em_brown_hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:em_orange_hover"
               href="/Reviews/Create"
             >
               Create Review

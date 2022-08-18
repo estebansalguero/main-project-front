@@ -134,12 +134,12 @@ h1 {
     width: 100px;
     height: fit-content;
     border-radius: 15px;
-    background-color:  #fe8c0c;
+    background-color:  #774108;
     color: white;
 }
 
 .card--actions:hover {
-    background-color: #bf6a0a;
+    background-color: #774108;
 }
 
 
