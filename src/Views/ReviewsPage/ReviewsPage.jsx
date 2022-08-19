@@ -16,6 +16,7 @@ export const ReviewsPage = () => {
     if (!document.getElementById("cards").hasChildNodes()) {
       for (var i = 0; i < Object.keys(reviews).length; i++) {
         var review = reviews[i];
+        console.log(import.meta.env.VITE_IMG_URL);
         var reviewDiv = htmlToElement(`
         <div class="card">
           <div class="card--image">

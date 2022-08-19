@@ -71,7 +71,7 @@ export const EditReview = () => {
                         readOnly
                       />
                     </div>
-                    <div className="col-span-1 sm:col-span-1">
+                    <div className="col-span-2 sm:col-span-2">
                       <label
                         htmlFor="ratingIn"
                         className="block text-sm font-medium text-gray-700"
@@ -82,7 +82,7 @@ export const EditReview = () => {
                         name="ratingIn"
                         id="ratingIn"
                         autoComplete="family-name"
-                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-md border-gray-300 rounded-md"
                       >
                         <option value="1">1</option>
                         <option value="2">2</option>
