@@ -53,7 +53,7 @@ export const FullReview = () => {
   }
   getReview();
   return (
-    <div className="bg-em_white overflow-hidden">
+    <div className="bg-em_white overflow-hidden h-screen">
       <div className="relative max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
         <div className="hidden lg:block bg-em_white absolute top-0 bottom-0 left-3/4 w-screen" />
         <p id="idRev" hidden></p>
