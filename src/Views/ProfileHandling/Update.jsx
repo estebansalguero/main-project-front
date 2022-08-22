@@ -2,6 +2,10 @@ import { useEffect } from "react";
 
 export const Update = () => {
   useEffect(() => {
+    if (sessionStorage.length === 0) {
+      console.log("No session storage");
+      window.location.href = "/403";
+    }
     fillInfo();
   }, []);
 
@@ -77,7 +81,7 @@ export const Update = () => {
               <label
                 htmlFor="userName"
                 className="block text-sm font-medium text-gray-700"
-              >
+                >
                 Username
               </label>
               <input
@@ -85,7 +89,8 @@ export const Update = () => {
                 name="userName"
                 id="userName"
                 autoComplete="given-name"
-                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md bg-gray-300"
+                readOnly
               />
             </div>
 

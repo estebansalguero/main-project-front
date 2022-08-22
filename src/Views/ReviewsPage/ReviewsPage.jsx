@@ -50,15 +50,15 @@ export const ReviewsPage = () => {
   }
   getAllReviews();
   return (
-    <div className="flex flex-col items-center justify-center h-screen min-w-0 pt-5 bg-em_white">
+    <div className="flex flex-col items-center justify-center h-content min-w-0 pt-5 bg-em_white">
       <div className="flex flex-col items-center justify-center h-screen">
-        <div className="flex flex-row justify-between items-center w-11/12 pt-0">
-          <p className="mt-1 text-4xl font-extrabold text-em_brown sm:text-3xl sm:tracking-tight lg:text-6xl">
+        <div className="flex flex-row justify-between items-center w-full pt-0">
+          <p className="mt-1 text-4xl font-extrabold text-em_brown sm:text-3xl sm:tracking-tight lg:text-6xl mr-5">
             Reviews
           </p>
           {sessionStorage.getItem("userName") != null ? (
             <a
-              className="inline-flex items-center px-6 py-3 text-base font-medium rounded-full shadow-sm text-em_white bg-em_brown hover:bg-em_brown_hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:em_orange_hover"
+              className="inline-flex items-center px-6 py-3 text-base font-medium rounded-full shadow-sm text-em_white bg-em_brown hover:bg-em_brown_hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:em_orange_hover text-center"
               href="/Reviews/Create"
             >
               Create Review

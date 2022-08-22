@@ -9,10 +9,13 @@ export const FullReview = () => {
 
   async function deleteReview() {
     var id = parseInt(document.getElementById("idRev").innerHTML);
+    var fileName = document.getElementById("image").src.split("/").pop();
     const requestOptions = {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id: id }),
+      body: JSON.stringify({ 
+        id: id,
+        fileName: fileName }),
     };
     const response = await fetch("/loneReview", requestOptions);
     const data = await response.text();
@@ -36,7 +39,7 @@ export const FullReview = () => {
     document.getElementById("idRev").innerHTML = data[0][0];
     document.getElementById("restaurante").innerHTML = data[0][1];
     document.getElementById("usuario").innerHTML = data[0][2];
-    document.getElementById("rating").innerHTML = data[0][3] + " / 5" + " ★";
+    document.getElementById("rating").innerHTML = data[0][3] + " / 5" + " ⭐";
     document.getElementById("ubicacion").innerHTML = data[0][7];
     document.getElementById("created").innerHTML = data[0][5].slice(0, 10);
     document.getElementById("review").innerHTML = data[0][4];
@@ -45,16 +48,16 @@ export const FullReview = () => {
     if (data[0][6] !== null) {
       document.getElementById("edited").hidden = false;
     }
-    if (data[0][2] === sessionStorage.getItem("userName")) {
-      console.log("entro");
-      document.getElementById("editButton").hidden = false;
-      document.getElementById("deleteButton").hidden = false;
+
+    if (data[0][2] !== sessionStorage.getItem("userName")) {
+      document.getElementById("editButton").remove();
+      document.getElementById("deleteButton").remove();
     }
   }
   getReview();
   return (
-    <div className="bg-em_white overflow-hidden h-screen">
-      <div className="relative max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+    <div className="bg-em_white overflow-hidden h-full min-h-screen">
+      <div className="relative max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 pb-4">
         <div className="hidden lg:block bg-em_white absolute top-0 bottom-0 left-3/4 w-screen" />
         <p id="idRev" hidden></p>
         <div className="mx-auto text-base max-w-prose lg:grid lg:grid-cols-2 lg:gap-8 lg:max-w-none">
@@ -125,7 +128,7 @@ export const FullReview = () => {
           <div className="mt-8 lg:mt-0">
             <div className="text-base max-w-prose mx-auto lg:max-w-none">
               <p className="text-lg text-gray-500" id="review"></p>
-              <p className="text-lg text-gray-500" id="ubicacion"></p>
+              <p className="text-lg text-gray-500 mt-5" id="ubicacion"></p>
               <p className="text-lg text-gray-500" id="created"></p>
               <p id="edited" hidden>
                 (edited)
@@ -134,22 +137,21 @@ export const FullReview = () => {
           </div>
         </div>
       </div>
-      <div className="text-center my-3 flex justify-around">
+      <div className="text-center my-3 flex justify-around" hidden>
         <button
           type="button"
           className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-600"
           id="deleteButton"
           onClick={deleteReview}
-          hidden
         >
           Delete
         </button>
+        <p id="messageRev"></p>
         <button
           type="button"
           className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-yellow-600 hover:bg-em_yellow_hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-em_yellow"
           id="editButton"
           onClick={editReview}
-          hidden
         >
           Update
         </button>

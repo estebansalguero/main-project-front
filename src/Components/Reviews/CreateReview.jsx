@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Preview } from "../Preview";
 
@@ -23,11 +23,22 @@ export const CreateReview = () => {
     createReview();
   };
 
+  useEffect(() => {
+    if (sessionStorage.length === 0) {
+      console.log("No session storage");
+      window.location.href = "/403";
+    }
+  }), [];
+
   async function createReview() {
-    let restaurante = document.getElementById("restauranteIn").value;
+    let restaurante = document
+      .getElementById("restauranteIn")
+      .value.replace(/'/g, "&#39");
     let usuario = sessionStorage.getItem("userName");
     let rating = parseInt(document.getElementById("ratingIn").value);
-    let review = document.getElementById("reviewIn").value;
+    let review = document
+      .getElementById("reviewIn")
+      .value.replace(/'/g, "&#39");
     let ubicacion = document.getElementById("ubicacionIn").value;
     var todayDate = new Date().toISOString().slice(0, 10);
     let fileName = file.name;
@@ -58,10 +69,30 @@ export const CreateReview = () => {
     }, 3000);
   }
 
+  const charCounter = (event) => {
+    let review = document.getElementById("reviewIn").value;
+    let charCount = review.length;
+    let charLeft = 1000 - charCount;
+
+    if (charCount > 800 && charCount < 900) {
+      document.getElementById("charLeft").style.color = "orange";
+    } else if (charCount > 900) {
+      document.getElementById("charLeft").style.color = "red";
+    } else {
+      document.getElementById("charLeft").style.color = "black";
+    }
+
+    document.getElementById("charLeft").innerHTML = charLeft;
+    if (charCount == 1000) {
+      document.getElementById("charLeft").innerHTML = "Stop typing jesus";
+
+    }
+  };
+
   return (
     <>
       <div className="bg-em_white">
-        <div className="md:grid md:grid-cols-3 md:gap-6 h-screen p-5">
+        <div className="md:grid md:grid-cols-3 md:gap-6 min-h-screen h-full p-5">
           <div className="md:col-span-1">
             <div className="px-4 sm:px-0">
               <h3 className="text-lg font-medium leading-6 text-gray-900">
@@ -146,13 +177,17 @@ export const CreateReview = () => {
                     <textarea
                       id="reviewIn"
                       name="reviewIn"
-                      rows={3}
+                      rows={10}
                       className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
                       defaultValue={""}
                       maxLength={1000}
+                      onChange={charCounter}
                     />
                   </div>
-                  <p className="mt-2 text-sm text-gray-500">
+                  <div className="mt-1 text-sm text-gray-600 absolute right-11">
+                    <span id="charLeft">1000</span> / 1000
+                  </div>
+                  <p className="mt-5 text-sm text-gray-500">
                     Write a review for the restaurant.
                   </p>
                 </div>

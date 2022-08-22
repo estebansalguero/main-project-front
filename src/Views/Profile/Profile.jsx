@@ -2,6 +2,10 @@ import { useEffect } from "react";
 
 export const Profile = () => {
   useEffect(() => {
+    if (sessionStorage.length === 0) {
+      console.log("No session storage");
+      window.location.href = "/403";
+    }
     fillInfo();
   }, []);
 
@@ -34,7 +38,7 @@ export const Profile = () => {
             <div className="photo-wrapper p-2">
               <img
                 className="w-32 h-32 rounded-full mx-auto"
-                src="https://c.tenor.com/ZydWxPTppJIAAAAC/tridance-yellow-triangle.gif"
+                src="https://c.tenor.com/kAqgGXgPPFoAAAAC/empanada.gif"
                 alt="Triangle"
               />
             </div>

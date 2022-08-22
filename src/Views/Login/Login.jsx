@@ -1,7 +1,39 @@
 import UserProfile from "../../Components/UserData/UserProfile";
 import Logo from "../../assets/images/empanada.png";
 
-export const Login = () => {
+export const Login = (props) => {
+  async function handleLogin() {
+    document.getElementById("message").innerHTML = "";
+    var data = await getUserlogin();
+    UserProfile.setUserData(
+      data[0][0],
+      data[0][1],
+      data[0][2],
+      data[0][3],
+      data[0][4],
+      data[0][5],
+      data[0][6]
+    );
+    window.location.href = "/profile";
+  }
+
+  async function getUserlogin() {
+    const userName = document.getElementById("userName").value;
+    const password = document.getElementById("password").value;
+    const response = await fetch(
+      "/userCrud?userName=" + userName + "&password=" + password
+    );
+    const data = await response.text();
+    if (data === "User not found" || data === "Missing required fields") {
+      document.getElementById("message").innerHTML = data;
+      setTimeout(function () {
+        document.getElementById("message").innerHTML = "";
+      }, 3000);
+    } else {
+      return JSON.parse(data);
+    }
+  }
+
   return (
     <>
       <div className="bg-em_white min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8 h-screen">
@@ -88,35 +120,3 @@ export const Login = () => {
     </>
   );
 };
-
-async function handleLogin() {
-  document.getElementById("message").innerHTML = "";
-  var data = await getUserlogin();
-  UserProfile.setUserData(
-    data[0][0],
-    data[0][1],
-    data[0][2],
-    data[0][3],
-    data[0][4],
-    data[0][5],
-    data[0][6]
-  );
-  window.location.href = "/profile";
-}
-
-async function getUserlogin() {
-  const userName = document.getElementById("userName").value;
-  const password = document.getElementById("password").value;
-  const response = await fetch(
-    "/userCrud?userName=" + userName + "&password=" + password
-  );
-  const data = await response.text();
-  if (data === "User not found" || data === "Missing required fields") {
-    document.getElementById("message").innerHTML = data;
-    setTimeout(function () {
-      document.getElementById("message").innerHTML = "";
-    }, 3000);
-  } else {
-    return JSON.parse(data);
-  }
-}

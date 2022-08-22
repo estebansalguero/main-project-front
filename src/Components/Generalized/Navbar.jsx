@@ -4,6 +4,8 @@ import logo from "../../assets/images/empanada.png";
 const navigation = [
   { name: "Home", href: "/" },
   { name: "Reviews", href: "/Reviews" },
+  { name: "Dishes", href: "/Dishes" },
+  { name: "Drinks", href: "/Drinks" },
 ];
 
 export const Navbar = () => {

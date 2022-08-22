@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Preview } from "../Preview";
 
-
 const revId = window.location.pathname.split("/")[2];
 
 export const EditReview = () => {
   useEffect(() => {
+    if (sessionStorage.length === 0) {
+      console.log("No session storage");
+      window.location.href = "/403";
+    }
     getReview();
   }, []);
   const [file, setFile] = useState(null);
@@ -16,6 +19,52 @@ export const EditReview = () => {
     setName(fileName);
   };
 
+  function setName(file) {
+    document.getElementById("fileName").innerHTML = file;
+  }
+
+  async function getReview() {
+    const requestOptions = {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+    };
+    const response = await fetch(`/loneReview?id=${revId}`, requestOptions);
+    const data = await response.json();
+    document.getElementById("restauranteIn").innerHTML = data[0][1];
+    document.getElementById("infoRest").innerHTML = data[0][1];
+    document.getElementById("ratingIn").value = data[0][3];
+    document.getElementById("ubicacionIn").innerHTML = data[0][7];
+    document.getElementById("reviewIn").value = data[0][4].replace("&#39", "'");
+  }
+
+  async function editReview() {
+    let rating = parseInt(document.getElementById("ratingIn").value);
+    let review = document.getElementById("reviewIn").value.replace("'", "&#39");
+    var todayDate = new Date().toISOString().slice(0, 10);
+
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: revId,
+        rating: rating,
+        review: review,
+        edited: todayDate,
+      }),
+    };
+
+    const response = await fetch("/loneReview", requestOptions);
+    const data = await response.text();
+
+    document.getElementById("messageCreate").innerHTML = data;
+
+    setTimeout(function () {
+      document.getElementById("messageCreate").innerHTML = "";
+      if (data === "Review edited!") {
+        window.location.href = "/reviews";
+      }
+    }, 3000);
+  }
 
   return (
     <>
@@ -43,7 +92,7 @@ export const EditReview = () => {
                       Restaurant
                     </label>
                     <div className="mt-1 flex rounded-md shadow-sm">
-                      <input
+                      <p
                         type="text"
                         name="restauranteIn"
                         id="restauranteIn"
@@ -62,7 +111,7 @@ export const EditReview = () => {
                       >
                         Location
                       </label>
-                      <input
+                      <p
                         type="text"
                         name="ubicacionIn"
                         id="ubicacionIn"
@@ -105,15 +154,13 @@ export const EditReview = () => {
                     <textarea
                       id="reviewIn"
                       name="reviewIn"
-                      rows={3}
+                      rows={10}
                       className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
                       defaultValue={""}
                       maxLength={1000}
                     />
                   </div>
-                  <p className="mt-2 text-sm text-gray-500">
-                    Changed opinion?
-                  </p>
+                  <p className="mt-2 text-sm text-gray-500">Changed opinion?</p>
                 </div>
               </div>
               <p id="messageCreate" />
@@ -133,54 +180,3 @@ export const EditReview = () => {
     </>
   );
 };
-
-function setName(file) {
-  document.getElementById("fileName").innerHTML = file;
-}
-
-async function getReview() {
-  const requestOptions = {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  };
-  const response = await fetch(
-    `/loneReview?id=${revId}`,
-    requestOptions
-  );
-  const data = await response.json();
-  document.getElementById("restauranteIn").value = data[0][1];
-  document.getElementById("infoRest").innerHTML = data[0][1];
-  document.getElementById("ratingIn").value = data[0][3];
-  document.getElementById("ubicacionIn").value = data[0][7];
-  document.getElementById("reviewIn").value = data[0][4];
-  
-}
-
-async function editReview() {
-  let rating = parseInt(document.getElementById("ratingIn").value);
-  let review = document.getElementById("reviewIn").value;
-  var todayDate = new Date().toISOString().slice(0, 10);
-
-  const requestOptions = {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      id: revId,
-      rating: rating,
-      review: review,
-      edited: todayDate,
-    }),
-  };
-
-  const response = await fetch("/loneReview", requestOptions);
-  const data = await response.text();
-
-  document.getElementById("messageCreate").innerHTML = data;
-
-  setTimeout(function () {
-    document.getElementById("messageCreate").innerHTML = "";
-    if (data === "Review edited!") {
-      window.location.href = "/reviews";
-    }
-  }, 3000);
-}
