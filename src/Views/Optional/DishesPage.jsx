@@ -43,8 +43,8 @@ export const DishesPage = () => {
   return (
     <div className="flex flex-col items-center justify-center h-content min-w-0 pt-5 bg-em_white">
       <div className="flex flex-col items-center justify-center h-screen">
-        <div className="flex flex-row justify-between items-center w-full pt-0">
-          <p className="mt-1 text-5xl font-extrabold text-em_brown sm:tracking-tight mr-5">
+        <div className="flex flex-row justify-between items-center w-full p-4">
+          <p className="mt-1 text-5xl font-extrabold text-em_brown sm:tracking-tight mr-5 ">
             Recommended Dishes
           </p>
         </div>
