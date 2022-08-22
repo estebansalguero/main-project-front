@@ -3,7 +3,6 @@ import { useEffect } from "react";
 export const Update = () => {
   useEffect(() => {
     if (sessionStorage.length === 0) {
-      console.log("No session storage");
       window.location.href = "/403";
     }
     fillInfo();

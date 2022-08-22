@@ -7,7 +7,6 @@ const revId = window.location.pathname.split("/")[2];
 export const EditReview = () => {
   useEffect(() => {
     if (sessionStorage.length === 0) {
-      console.log("No session storage");
       window.location.href = "/403";
     }
     getReview();
