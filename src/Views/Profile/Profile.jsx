@@ -50,6 +50,7 @@ export const Profile = (props) => {
               <h3
                 id="userName"
                 className="text-center text-xl text-em_brown font-medium leading-8"
+
               />
               <div className="text-center text-gray-400 text-xs font-semibold">
                 <p>User</p>
@@ -80,6 +81,7 @@ export const Profile = (props) => {
                 <button
                   type="button"
                   className="pingButton inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-em_brown hover:bg-em_brown_hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-em_brown"
+
                   onClick={handleLogout}
                 >
                   Log out
@@ -87,6 +89,7 @@ export const Profile = (props) => {
                 <button
                   type="button"
                   className="pingButton inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-em_brown hover:bg-em_brown_hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-em_brown"
+
                   onClick={handleUpdate}
                 >
                   Update
@@ -99,3 +102,4 @@ export const Profile = (props) => {
     </>
   );
 };
+

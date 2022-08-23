@@ -15,6 +15,7 @@ export const Home = (props) => {
           <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500">
             Empanadas Review is a web application that allows you to review your
             favorite empanadas from an specific restaurant! You can add your own empanadas to the database,
+
             and then view them all.
           </p>
         </div>

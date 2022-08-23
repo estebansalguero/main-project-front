@@ -17,6 +17,7 @@ export default defineConfig({
       "/uploadImg": "http://localhost:4000",
       "/optionalDBDish": "http://localhost:4000",
       "/optionalDBDrink": "http://localhost:4000",
+
     },
   },
 });

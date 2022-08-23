@@ -53,7 +53,6 @@ const Ping = (props) => {
     }, 2000);
   };
 
-
   return (
     <>
       <button
