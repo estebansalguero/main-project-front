@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Preview } from "../Preview";
 
-export const CreateReview = () => {
+export const CreateReview = (props) => {
+  
+  const navigate = useNavigate();
+
   const [file, setFile] = useState(null);
   const onInputChange = (event) => {
     setFile(event.target.files[0]);
     var fileName = event.target.files[0].name;
-    setName(fileName);
   };
 
   const onFormSubmit = (event) => {
@@ -17,18 +20,82 @@ export const CreateReview = () => {
     formData.append("file", file);
     axios
       .post("/uploadImg", formData)
-      .then((res) => {
-      })
+      .then((res) => {})
       .catch((err) => {
         console.log(err);
       });
     createReview();
   };
 
+  useEffect(() => {
+    if (!props.user) {
+      navigate("/403");
+    }
+  }), [];
+
+  async function createReview() {
+    let restaurante = document
+      .getElementById("restauranteIn")
+      .value.replace(/'/g, "&#39");
+    let usuario = props.user[0][2];
+    let rating = parseInt(document.getElementById("ratingIn").value);
+    let review = document
+      .getElementById("reviewIn")
+      .value.replace(/'/g, "&#39");
+    let ubicacion = document.getElementById("ubicacionIn").value;
+    var todayDate = new Date().toISOString().slice(0, 10);
+    let fileName = file.name;
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        restaurante: restaurante,
+        usuario: usuario,
+        rating: rating,
+        review: review,
+        created: todayDate,
+        ubicacion: ubicacion,
+        fileName: fileName,
+      }),
+    };
+    console.log(requestOptions);
+    const response = await fetch("/crudReviews", requestOptions);
+    const data = await response.text();
+    document.getElementById("messageCreate").innerHTML = data;
+
+    setTimeout(function () {
+      document.getElementById("messageCreate").innerHTML = "";
+      if (data === "Review created!") {
+        navigate("/reviews");
+      }
+    }, 3000);
+  }
+
+  const charCounter = (event) => {
+    let review = document.getElementById("reviewIn").value;
+    let charCount = review.length;
+    let charLeft = 1000 - charCount;
+
+    if (charCount > 800 && charCount < 900) {
+      document.getElementById("charLeft").style.color = "orange";
+    } else if (charCount > 900) {
+      document.getElementById("charLeft").style.color = "red";
+    } else {
+      document.getElementById("charLeft").style.color = "black";
+    }
+
+    document.getElementById("charLeft").innerHTML = charLeft;
+    if (charCount == 1000) {
+      document.getElementById("charLeft").innerHTML = "Stop typing jesus";
+
+    }
+  };
+
   return (
     <>
-      <div>
-        <div className="md:grid md:grid-cols-3 md:gap-6 h-screen">
+      <div className="bg-em_white">
+        <div className="md:grid md:grid-cols-3 md:gap-6 min-h-screen h-full p-5">
           <div className="md:col-span-1">
             <div className="px-4 sm:px-0">
               <h3 className="text-lg font-medium leading-6 text-gray-900">
@@ -78,8 +145,7 @@ export const CreateReview = () => {
                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
-
-                    <div className="col-span-1 sm:col-span-1">
+                    <div className="col-span-2 sm:col-span-1">
                       <label
                         htmlFor="ratingIn"
                         className="block text-sm font-medium text-gray-700"
@@ -113,12 +179,17 @@ export const CreateReview = () => {
                     <textarea
                       id="reviewIn"
                       name="reviewIn"
-                      rows={3}
+                      rows={10}
                       className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
                       defaultValue={""}
+                      maxLength={1000}
+                      onChange={charCounter}
                     />
                   </div>
-                  <p className="mt-2 text-sm text-gray-500">
+                  <div className="mt-1 text-sm text-gray-600 absolute right-11">
+                    <span id="charLeft">1000</span> / 1000
+                  </div>
+                  <p className="mt-5 text-sm text-gray-500">
                     Write a review for the restaurant.
                   </p>
                 </div>
@@ -128,34 +199,42 @@ export const CreateReview = () => {
                     <label className="block text-sm font-medium text-gray-700">
                       Upload Image
                     </label>
-                    <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                      <div className="space-y-1 text-center">
-                        <svg
-                          className="mx-auto h-12 w-12 text-gray-400"
-                          stroke="currentColor"
-                          fill="none"
-                          viewBox="0 0 48 48"
-                          aria-hidden="true"
-                        >
-                          <path
-                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                            strokeWidth={2}
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                        <div className="flex text-sm text-gray-600">
-                          <label
-                            htmlFor="file-upload"
-                            className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+                    <label
+                      htmlFor="file-upload"
+                      className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+                    >
+                      <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                        <div className="space-y-1 text-center">
+                          <svg
+                            className="mx-auto h-12 w-12 text-gray-400"
+                            stroke="currentColor"
+                            fill="none"
+                            viewBox="0 0 48 48"
+                            aria-hidden="true"
                           >
-                            <input onChange={onInputChange} type="file" />
-                            <p id="messageCreate" />
-                          </label>
+                            <path
+                              d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                              strokeWidth={2}
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+
+                          <div className="flex text-sm text-gray-600">
+                            {file ? file.name : "Click here to upload"}
+                            <input
+                              onChange={onInputChange}
+                              type="file"
+                              accept="image/*"
+                              id="file-upload"
+                              hidden
+                            />
+                          </div>
+
+                          <p id="messageCreate" />
                         </div>
-                        <p id="fileName" />
                       </div>
-                    </div>
+                    </label>
                   </form>
                 </div>
               </div>
@@ -163,7 +242,7 @@ export const CreateReview = () => {
                 <button
                   onClick={onFormSubmit}
                   type="submit"
-                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-em_brown hover:bg-em_brown_hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   Save
                 </button>
@@ -175,42 +254,3 @@ export const CreateReview = () => {
     </>
   );
 };
-
-function setName(file) {
-  document.getElementById("fileName").innerHTML = file;
-}
-
-async function createReview() {
-  let restaurante = document.getElementById("restauranteIn").value;
-  let usuario = sessionStorage.getItem("userName");
-  let rating = parseInt(document.getElementById("ratingIn").value);
-  let review = document.getElementById("reviewIn").value;
-  let ubicacion = document.getElementById("ubicacionIn").value;
-  var todayDate = new Date().toISOString().slice(0, 10);
-  let fileName = document.getElementById("fileName").innerHTML;
-
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      restaurante: restaurante,
-      usuario: usuario,
-      rating: rating,
-      review: review,
-      created: todayDate,
-      ubicacion: ubicacion,
-      fileName: fileName,
-    }),
-  };
-
-  const response = await fetch("/crudReviews", requestOptions);
-  const data = await response.text();
-  document.getElementById("messageCreate").innerHTML = data;
-
-  setTimeout(function () {
-    document.getElementById("messageCreate").innerHTML = "";
-    if (data === "Review created!") {
-      window.location.href = "/reviews";
-    }
-  }, 3000);
-}

@@ -1,10 +1,40 @@
 import UserProfile from "../../Components/UserData/UserProfile";
+import { useNavigate } from 'react-router-dom';
 import Logo from "../../assets/images/empanada.png";
+import { Link } from "react-router-dom";
 
-export const Login = () => {
+export const Login = (props) => {
+  let navigate = useNavigate();
+
+  async function handleLogin() {
+    document.getElementById("message").innerHTML = "";
+    var data = await getUserlogin();
+    console.log(data);
+    props.handleLogin(data);
+    console.log("login", props.user);
+    navigate("/profile");
+  }
+
+  async function getUserlogin() {
+    const userName = document.getElementById("userName").value;
+    const password = document.getElementById("password").value;
+    const response = await fetch(
+      "/userCrud?userName=" + userName + "&password=" + password
+    );
+    const data = await response.text();
+    if (data === "User not found" || data === "Missing required fields") {
+      document.getElementById("message").innerHTML = data;
+      setTimeout(function () {
+        document.getElementById("message").innerHTML = "";
+      }, 3000);
+    } else {
+      return JSON.parse(data);
+    }
+  }
+
   return (
     <>
-      <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8 h-screen">
+      <div className="bg-em_white min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8 h-screen">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <img className="mx-auto h-12 w-auto" src={Logo} alt="Workflow" />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
@@ -56,7 +86,8 @@ export const Login = () => {
 
             <div>
               <button
-                className="mt-5 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="mt-5 w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-em_brown hover:bg-em_brown_hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+
                 onClick={handleLogin}
               >
                 Sign in
@@ -74,12 +105,12 @@ export const Login = () => {
               </div>
 
               <div>
-                <a
-                  href="/Signin"
+                <Link
+                  to="/Signin"
                   className="mt-6 w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                 >
                   Create account
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -89,34 +120,3 @@ export const Login = () => {
   );
 };
 
-async function handleLogin() {
-  document.getElementById("message").innerHTML = "";
-  var data = await getUserlogin();
-  UserProfile.setUserData(
-    data[0][0],
-    data[0][1],
-    data[0][2],
-    data[0][3],
-    data[0][4],
-    data[0][5],
-    data[0][6]
-  );
-  window.location.href = "/profile";
-}
-
-async function getUserlogin() {
-  const userName = document.getElementById("userName").value;
-  const password = document.getElementById("password").value;
-  const response = await fetch(
-    "/userCrud?userName=" + userName + "&password=" + password
-  );
-  const data = await response.text();
-  if (data === "User not found" || data === "Missing required fields") {
-    document.getElementById("message").innerHTML = data;
-    setTimeout(function () {
-      document.getElementById("message").innerHTML = "";
-    }, 3000);
-  } else {
-    return JSON.parse(data);
-  }
-}

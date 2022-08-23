@@ -15,6 +15,9 @@ export default defineConfig({
       "/crudReviews": "http://localhost:4000",
       "/loneReview": "http://localhost:4000",
       "/uploadImg": "http://localhost:4000",
+      "/optionalDBDish": "http://localhost:4000",
+      "/optionalDBDrink": "http://localhost:4000",
+
     },
   },
 });
