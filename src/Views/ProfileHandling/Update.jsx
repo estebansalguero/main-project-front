@@ -1,9 +1,13 @@
 import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-export const Update = () => {
+export const Update = (props) => {
+  const navigate = useNavigate();
+
   useEffect(() => {
-    if (sessionStorage.length === 0) {
-      window.location.href = "/403";
+    if (props.user === null) {
+      navigate("/403");
+      return;
     }
     fillInfo();
   }, []);
@@ -13,8 +17,8 @@ export const Update = () => {
   }
 
   async function setUserlogin() {
-    let indUser = sessionStorage.getItem("userName");
-    let indPassword = sessionStorage.getItem("password");
+    let indUser = props.user[0][1];
+    let indPassword = props.user[0][3];
     let userName = document.getElementById("userName").value;
     let password = document.getElementById("password").value;
     let nombre = document.getElementById("nameIn").value;
@@ -47,17 +51,13 @@ export const Update = () => {
   }
 
   const fillInfo = () => {
-    document.getElementById("userName").value =
-      sessionStorage.getItem("userName");
-    document.getElementById("password").value =
-      sessionStorage.getItem("password");
-    document.getElementById("nameIn").value = sessionStorage.getItem("name");
-    document.getElementById("apellidoIn").value =
-      sessionStorage.getItem("lastName");
-    document.getElementById("correoIn").value =
-      sessionStorage.getItem("correo");
-    document.getElementById("telefonoIn").value =
-      sessionStorage.getItem("telefono");
+    console.log(props.user);
+    document.getElementById("userName").value = props.user[0][2];
+    document.getElementById("password").value = props.user[0][1];
+    document.getElementById("nameIn").value = props.user[0][3];
+    document.getElementById("apellidoIn").value = props.user[0][4];
+    document.getElementById("correoIn").value = props.user[0][5];
+    document.getElementById("telefonoIn").value = props.user[0][6];
   };
 
   return (
@@ -80,7 +80,7 @@ export const Update = () => {
               <label
                 htmlFor="userName"
                 className="block text-sm font-medium text-gray-700"
-                >
+              >
                 Username
               </label>
               <input

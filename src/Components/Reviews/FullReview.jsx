@@ -1,27 +1,41 @@
 import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./reviews.css";
 
-export const FullReview = () => {
-  function editReview() {
-    var id = parseInt(document.getElementById("idRev").innerHTML);
-    window.location.href = `/editReview/${id}`;
-  }
+export const FullReview = (props) => {
+  let navigate = useNavigate();
+  
+  const [idReview, setIdReview] = useState();
+  const [owner, setOwner] = useState();
+  const [editable, setEditable] = useState(false);
 
+  useEffect(() => {
+    getReview();
+    if (props.user) {
+      if (props.user[0][2] === owner) {
+        setEditable(true);
+      }
+    }
+  }, [owner]);
+
+  
   async function deleteReview() {
-    var id = parseInt(document.getElementById("idRev").innerHTML);
+    var id = idReview;
     var fileName = document.getElementById("image").src.split("/").pop();
     const requestOptions = {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         id: id,
-        fileName: fileName }),
+        fileName: fileName,
+      }),
     };
+
     const response = await fetch("/loneReview", requestOptions);
     const data = await response.text();
     document.getElementById("messageRev").innerHTML = data;
     setTimeout(function () {
-      window.location.href = "/reviews";
+      navigate("/reviews");
     }, 3000);
   }
 
@@ -36,9 +50,10 @@ export const FullReview = () => {
       requestOptions
     );
     const data = await response.json();
-    document.getElementById("idRev").innerHTML = data[0][0];
+    setIdReview(data[0][0]);
     document.getElementById("restaurante").innerHTML = data[0][1];
     document.getElementById("usuario").innerHTML = data[0][2];
+    setOwner(data[0][2]);
     document.getElementById("rating").innerHTML = data[0][3] + " / 5" + " ⭐";
     document.getElementById("ubicacion").innerHTML = data[0][7];
     document.getElementById("created").innerHTML = data[0][5].slice(0, 10);
@@ -48,13 +63,7 @@ export const FullReview = () => {
     if (data[0][6] !== null) {
       document.getElementById("edited").hidden = false;
     }
-
-    if (data[0][2] !== sessionStorage.getItem("userName")) {
-      document.getElementById("editButton").remove();
-      document.getElementById("deleteButton").remove();
-    }
   }
-  getReview();
   return (
     <div className="bg-em_white overflow-hidden h-full min-h-screen">
       <div className="relative max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 pb-4">
@@ -137,25 +146,29 @@ export const FullReview = () => {
           </div>
         </div>
       </div>
-      <div className="text-center my-3 flex justify-around" hidden>
-        <button
-          type="button"
-          className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-600"
-          id="deleteButton"
-          onClick={deleteReview}
-        >
-          Delete
-        </button>
-        <p id="messageRev"></p>
-        <button
-          type="button"
-          className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-yellow-600 hover:bg-em_yellow_hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-em_yellow"
-          id="editButton"
-          onClick={editReview}
-        >
-          Update
-        </button>
-      </div>
+      {editable ? (
+        <div className="text-center my-3 flex justify-around" hidden>
+          <button
+            type="button"
+            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-600"
+            id="deleteButton"
+            onClick={deleteReview}
+          >
+            Delete
+          </button>
+          <p id="messageRev"></p>
+          <Link
+            type="button"
+            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-yellow-600 hover:bg-em_yellow_hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-em_yellow"
+            id="editButton"
+            to={"/editReview/" + idReview}
+          >
+            Update
+          </Link>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

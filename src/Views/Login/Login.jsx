@@ -1,20 +1,18 @@
 import UserProfile from "../../Components/UserData/UserProfile";
+import { useNavigate } from 'react-router-dom';
 import Logo from "../../assets/images/empanada.png";
+import { Link } from "react-router-dom";
 
 export const Login = (props) => {
+  let navigate = useNavigate();
+
   async function handleLogin() {
     document.getElementById("message").innerHTML = "";
     var data = await getUserlogin();
-    UserProfile.setUserData(
-      data[0][0],
-      data[0][1],
-      data[0][2],
-      data[0][3],
-      data[0][4],
-      data[0][5],
-      data[0][6]
-    );
-    window.location.href = "/profile";
+    console.log(data);
+    props.handleLogin(data);
+    console.log("login", props.user);
+    navigate("/profile");
   }
 
   async function getUserlogin() {
@@ -106,12 +104,12 @@ export const Login = (props) => {
               </div>
 
               <div>
-                <a
-                  href="/Signin"
+                <Link
+                  to="/Signin"
                   className="mt-6 w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                 >
                   Create account
-                </a>
+                </Link>
               </div>
             </div>
           </div>

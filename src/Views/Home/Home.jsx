@@ -1,7 +1,7 @@
 import Ping from "../../hooks/Ping";
 import Image from "./../../Assets/images/empanada.png";
 
-export const Home = () => {
+export const Home = (props) => {
   return (
     <div className="bg-em_white h-screen">
       <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
@@ -20,7 +20,7 @@ export const Home = () => {
         </div>
         <div className="flex justify-center flex-col items-center py-5">
           <img src={Image} width="150" />
-          <Ping />
+          <Ping user={props.user}/>
         </div>
       </div>
     </div>

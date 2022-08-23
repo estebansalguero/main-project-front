@@ -1,4 +1,8 @@
-export const Signin = () => {
+import { Link, useNavigate } from "react-router-dom";
+
+export const Signin = (props) => {
+  const navigate = useNavigate();
+
   async function handleSignin() {
     var data = await setUserlogin();
   }
@@ -31,7 +35,7 @@ export const Signin = () => {
     setTimeout(function () {
       document.getElementById("messageCreate").innerHTML = "";
       if (data === "User added!") {
-        window.location.href = "/login";
+        navigate("/login");
       }
     }, 3000);
   }

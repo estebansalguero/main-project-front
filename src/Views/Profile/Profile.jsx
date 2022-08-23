@@ -1,29 +1,34 @@
 import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-export const Profile = () => {
+export const Profile = (props) => {
+  const navigate = useNavigate();
+
   useEffect(() => {
-    if (sessionStorage.length === 0) {
-      window.location.href = "/403";
+    console.log(props.user);
+    if (props.user == null) {
+      navigate("/403");
+      return;
     }
     fillInfo();
-  }, []);
+  }, [props]);
 
   const fillInfo = () => {
     document.getElementById("userName").innerHTML =
-      sessionStorage.getItem("userName");
-    document.getElementById("name").innerHTML = sessionStorage.getItem("name");
+      props.user[0][2];
+    document.getElementById("name").innerHTML = props.user[0][3];
     document.getElementById("lastName").innerHTML =
-      sessionStorage.getItem("lastName");
-    document.getElementById("email").innerHTML = sessionStorage.getItem("correo");
+    props.user[0][4];
+    document.getElementById("email").innerHTML = props.user[0][5];
   };
   
   const handleLogout = () => {
-    sessionStorage.clear();
-    window.location.href = "/";
+    props.handleLogout();
+    navigate("/");
   };
   
   const handleUpdate = () => {
-    window.location.href = "/update";
+    navigate("/update");
   };
   
   return (

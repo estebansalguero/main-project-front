@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Preview } from "../Preview";
 
 const revId = window.location.pathname.split("/")[2];
 
-export const EditReview = () => {
+export const EditReview = (props) => {
+
+  const navigate  = useNavigate();
+
   useEffect(() => {
-    if (sessionStorage.length === 0) {
-      window.location.href = "/403";
+    if (props.user === null) {
+      navigate("/403");
+      return;
     }
     getReview();
   }, []);
@@ -60,7 +65,7 @@ export const EditReview = () => {
     setTimeout(function () {
       document.getElementById("messageCreate").innerHTML = "";
       if (data === "Review edited!") {
-        window.location.href = "/reviews";
+        navigate("/reviews");
       }
     }, 3000);
   }

@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Preview } from "../Preview";
 
-export const CreateReview = () => {
+export const CreateReview = (props) => {
+  
+  const navigate = useNavigate();
+
   const [file, setFile] = useState(null);
   const onInputChange = (event) => {
     setFile(event.target.files[0]);
@@ -24,8 +28,8 @@ export const CreateReview = () => {
   };
 
   useEffect(() => {
-    if (sessionStorage.length === 0) {
-      window.location.href = "/403";
+    if (!props.user) {
+      navigate("/403");
     }
   }), [];
 
@@ -33,7 +37,7 @@ export const CreateReview = () => {
     let restaurante = document
       .getElementById("restauranteIn")
       .value.replace(/'/g, "&#39");
-    let usuario = sessionStorage.getItem("userName");
+    let usuario = props.user[0][2];
     let rating = parseInt(document.getElementById("ratingIn").value);
     let review = document
       .getElementById("reviewIn")
@@ -55,7 +59,7 @@ export const CreateReview = () => {
         fileName: fileName,
       }),
     };
-
+    console.log(requestOptions);
     const response = await fetch("/crudReviews", requestOptions);
     const data = await response.text();
     document.getElementById("messageCreate").innerHTML = data;
@@ -63,7 +67,7 @@ export const CreateReview = () => {
     setTimeout(function () {
       document.getElementById("messageCreate").innerHTML = "";
       if (data === "Review created!") {
-        window.location.href = "/reviews";
+        navigate("/reviews");
       }
     }, 3000);
   }

@@ -6,10 +6,6 @@ import { App } from "./App";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <>
-    <Navbar />
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-    <Footer />
+    <App />
   </>
 );

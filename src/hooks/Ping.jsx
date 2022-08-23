@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const Ping = () => {
+const Ping = (props) => {
   const [pingIndex, setPingIndex] = useState(0);
 
   useEffect(() => {
